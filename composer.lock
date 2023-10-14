@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "133893b4fe88b0e9b4610002330da333",
+    "content-hash": "7956ac7269ecefd8afe4a5f759ac6ff8",
     "packages": [
         {
             "name": "brick/math",
@@ -2841,6 +2841,46 @@
                 }
             ],
             "time": "2023-02-25T19:38:58+00:00"
+        },
+        {
+            "name": "programmeruz/laravel-creator",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bobobekturdiyev/laravel-creator.git",
+                "reference": "254cd3dcf9a7796c6be8dbe9d34a83e26c9a9eea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bobobekturdiyev/laravel-creator/zipball/254cd3dcf9a7796c6be8dbe9d34a83e26c9a9eea",
+                "reference": "254cd3dcf9a7796c6be8dbe9d34a83e26c9a9eea",
+                "shasum": ""
+            },
+            "require": {
+                "darkaonline/l5-swagger": "^8.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Programmeruz\\LaravelCreator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Bobobek Turdiyev",
+                    "email": "info@programmer.uz"
+                }
+            ],
+            "description": "Generate Model, Migration, Seeder, Factory, Resource, Controller, SWAGGER using simple form",
+            "support": {
+                "issues": "https://github.com/bobobekturdiyev/laravel-creator/issues",
+                "source": "https://github.com/bobobekturdiyev/laravel-creator/tree/v1.1.1"
+            },
+            "time": "2023-09-19T15:37:28+00:00"
         },
         {
             "name": "psr/cache",

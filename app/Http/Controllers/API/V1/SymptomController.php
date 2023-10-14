@@ -236,4 +236,3 @@ class SymptomController extends Controller
         ]);
     }
 }
-//TODO Create_disease_symptoms_table

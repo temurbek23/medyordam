@@ -12,3 +12,4 @@ Route::apiResource('profession', \App\Http\Controllers\API\V1\ProfessionControll
 Route::apiResource('call_history', \App\Http\Controllers\API\V1\CallHistoryController::class);
 Route::apiResource('disease', \App\Http\Controllers\API\V1\DiseaseController::class);
 Route::apiResource('symptom', \App\Http\Controllers\API\V1\SymptomController::class);
+Route::apiResource('first_aid', \App\Http\Controllers\API\V1\FirstAidController::class);

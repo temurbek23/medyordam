@@ -26,3 +26,4 @@ Route::resource('profession', \App\Http\Controllers\ProfessionController::class)
 Route::resource('call_history', \App\Http\Controllers\CallHistoryController::class);
 Route::resource('disease', \App\Http\Controllers\DiseaseController::class);
 Route::resource('symptom', \App\Http\Controllers\SymptomController::class);
+Route::resource('first_aid', \App\Http\Controllers\FirstAidController::class);

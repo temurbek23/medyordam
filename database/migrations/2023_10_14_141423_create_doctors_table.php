@@ -18,10 +18,12 @@ return new class extends Migration
 			$table->string('password');
 			$table->string('email');
 			$table->string('contact');
+			$table->string('main_profession');
 			$table->string('photo');
 			$table->text('about');
 			$table->text('education');
 			$table->text('practice');
+			$table->text('practice_in_years');
 			$table->text('residency');
 			$table->timestamp('created_at')->nullable();
 			$table->timestamp('updated_at')->nullable();

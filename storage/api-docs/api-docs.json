@@ -2255,6 +2255,63 @@
                     }
                 ]
             }
+        },
+        "/api/v1/scan": {
+            "post": {
+                "tags": [
+                    "Scan API"
+                ],
+                "summary": "Scan a photo",
+                "description": "Scan a photo",
+                "operationId": "scan_photo",
+                "requestBody": {
+                    "description": "Scan photo",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "photo"
+                                ],
+                                "properties": {
+                                    "photo": {
+                                        "type": "photo",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Doctor"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api": []
+                    }
+                ]
+            }
         }
     },
     "components": {
@@ -2419,9 +2476,6 @@
                                     "type": "string"
                                 },
                                 "lastname": {
-                                    "type": "string"
-                                },
-                                "password": {
                                     "type": "string"
                                 },
                                 "email": {

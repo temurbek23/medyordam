@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::post('scan', [\App\Http\Controllers\ScanController::class, 'scan']);
+
 Route::apiResource('admin', \App\Http\Controllers\V1\AdminController::class);
 Route::apiResource('patient', \App\Http\Controllers\API\V1\PatientController::class);
 Route::apiResource('doctor', \App\Http\Controllers\API\V1\DoctorController::class);

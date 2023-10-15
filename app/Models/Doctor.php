@@ -7,22 +7,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class Doctor extends Model
 {
-    use HasFactory;
+	use HasFactory;
 
-    protected $fillable = [
-        
-	'id',
-	'firstname',
-	'lastname',
-	'password',
-	'email',
-	'contact',
-	'photo',
-	'about',
-	'education',
-	'practice',
-	'residency',
-	'created_at',
-	'updated_at',
-    ];
+	protected $fillable = [
+		'firstname',
+		'lastname',
+		'password',
+		'email',
+		'contact',
+		'main_profession',
+		'photo',
+		'about',
+		'education',
+		'practice',
+		'practice_in_years',
+		'residency',
+		'created_at',
+		'updated_at',
+	];
+
+	public function professions()
+	{
+		return $this->belongsToMany(Profession::class);
+	}
 }

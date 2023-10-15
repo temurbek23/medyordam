@@ -7,13 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Symptom extends Model
 {
-    use HasFactory;
+	use HasFactory;
 
-    protected $fillable = [
-        
-	'id',
-	'name',
-	'created_at',
-	'updated_at',
-    ];
+	protected $fillable = [
+		'name',
+		'created_at',
+		'updated_at',
+	];
+
+	public function diseases()
+	{
+		return $this->belongsToMany(Disease::class);
+	}
 }

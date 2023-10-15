@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\DiseaseResource;
 use App\Http\ValidatorResponse;
 use App\Models\Disease;
+use App\Models\Symptom;
 use Illuminate\Http\Request;
 
 class ScanController extends Controller
@@ -20,8 +21,8 @@ class ScanController extends Controller
      *      tags={"Scan API"},
      *      @OA\RequestBody(required=true, description="Scan photo",
      *           @OA\MediaType(mediaType="multipart/form-data",
-     *              @OA\Schema(type="object", required={"photo"},
-     *                  @OA\Property(property="photo", type="photo", example=""),
+     *              @OA\Schema(type="object", required={"symptom"},
+     *                  @OA\Property(property="symptom", type="string", example="cut"),
      *              )
      *          )
      *      ),
@@ -38,7 +39,7 @@ class ScanController extends Controller
     {
 
         $rules = array(
-            'photo' => 'required|mimes:png,jpg,jpeg,webp',
+            'symptom' => 'required|string',
         );
 
         $validator = new ValidatorResponse();
@@ -50,16 +51,16 @@ class ScanController extends Controller
             ]);
         }
 
-        if ($request->hasFile("photo")) {
-            $file = $request->file("photo");
-            $filename = time() . "_" . $file->getClientOriginalName();
-            $file->move("uploads/photo", $filename);
-        }
+        $symptom = Symptom::where('name', $request->symptom)->first();
 
-        $disease = Disease::first();
+        if (!$symptom)
+            return response()->json([
+                'message' => 'Symptom not found',
+                'code' => 404
+            ]);
 
         return response()->json([
-            'data' => new DiseaseResource($disease),
+            'data' => new DiseaseResource($symptom->diseases()->first()),
             'code' => 200
         ]);
     }

@@ -2271,12 +2271,12 @@
                         "multipart/form-data": {
                             "schema": {
                                 "required": [
-                                    "photo"
+                                    "symptom"
                                 ],
                                 "properties": {
-                                    "photo": {
-                                        "type": "photo",
-                                        "example": ""
+                                    "symptom": {
+                                        "type": "string",
+                                        "example": "cut"
                                     }
                                 },
                                 "type": "object"

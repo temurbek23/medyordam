@@ -56,7 +56,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctorS = Doctor::all();
+        $doctorS = Doctor::with('professions')->get();
         return response()->json([
             'data' => DoctorResource::collection($doctorS),
         ]);
@@ -87,7 +87,7 @@ class DoctorController extends Controller
      */
     public function show(string $id)
     {
-        $doctor = Doctor::find($id);
+        $doctor = Doctor::with('professions')->find($id);
         if (!$doctor) {
             return response()->json([
                 'message' => "Doctor not found",

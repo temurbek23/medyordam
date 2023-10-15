@@ -3,7 +3,12 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Disease;
+use App\Models\Doctor;
+use App\Models\Profession;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,11 +28,14 @@ class DatabaseSeeder extends Seeder
             CallHistorySeeder::class,
         ]);
 
-        // \App\Models\User::factory(10)->create();
+        $doctors = Doctor::all();
+        foreach ($doctors as $doctor)
+            for ($i = 0; $i < 3; $i++)
+                $doctor->professions()->attach(rand(1, 20));
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $diseases = Disease::all();
+        foreach ($diseases as $disease)
+            for ($i = 0; $i < 3; $i++)
+                $disease->symptoms()->attach(rand(1, 20));
     }
 }

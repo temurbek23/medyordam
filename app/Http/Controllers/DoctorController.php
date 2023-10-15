@@ -30,30 +30,30 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'firstname' => 'required|string|max:255',
-			'lastname' => 'required|string|max:255',
-			'password' => 'required|string|max:255',
-			'email' => 'required|string|max:255',
-			'contact' => 'required|string|max:255',
-			'photo' => 'required|',
-			'about' => 'required|string|max:255',
-			'education' => 'required|string|max:255',
-			'practice' => 'required|string|max:255',
-			'residency' => 'required|string|max:255'
+            'lastname' => 'required|string|max:255',
+            'password' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'contact' => 'required|string|max:255',
+            'photo' => 'required|',
+            'about' => 'required|string|max:255',
+            'education' => 'required|string|max:255',
+            'practice' => 'required|string|max:255',
+            'residency' => 'required|string|max:255'
         ]);
 
         $doctor = new Doctor();
         $doctor->firstname = $request->firstname;
-		$doctor->lastname = $request->lastname;
-		$doctor->password = $request->password;
-		$doctor->email = $request->email;
-		$doctor->contact = $request->contact;
-		if ($request->hasFile("photo")) {
+        $doctor->lastname = $request->lastname;
+        $doctor->password = $request->password;
+        $doctor->email = $request->email;
+        $doctor->contact = $request->contact;
+        if ($request->hasFile("photo")) {
             $file = $request->file("photo");
-            $filename = time(). "_" . $file->getClientOriginalName();
+            $filename = time() . "_" . $file->getClientOriginalName();
             if ($doctor->photo) {
-                $oldFilePath = 'uploads/photo/'.basename($doctor->photo);
+                $oldFilePath = 'uploads/photo/' . basename($doctor->photo);
                 if (file_exists($oldFilePath)) {
                     unlink($oldFilePath);
                 }
@@ -61,10 +61,10 @@ class DoctorController extends Controller
             $file->move("uploads/photo", $filename);
             $doctor->photo = asset("uploads/photo/$filename");
         }
-		$doctor->about = $request->about;
-		$doctor->education = $request->education;
-		$doctor->practice = $request->practice;
-		$doctor->residency = $request->residency;
+        $doctor->about = $request->about;
+        $doctor->education = $request->education;
+        $doctor->practice = $request->practice;
+        $doctor->residency = $request->residency;
         $doctor->save();
 
         return redirect()->route('doctor.index')->with(['message' => "Doctor create successfully"]);
@@ -85,7 +85,7 @@ class DoctorController extends Controller
     public function edit(string $id)
     {
         $doctor = Doctor::find($id);
-        if(!$doctor){
+        if (!$doctor) {
             abort(404);
         }
         return view('doctor.edit-doctor', ['model' => $doctor]);
@@ -98,15 +98,15 @@ class DoctorController extends Controller
     {
         $this->validate($request, [
             'firstname' => 'required|string|max:255',
-			'lastname' => 'required|string|max:255',
-			'password' => 'required|string|max:255',
-			'email' => 'required|string|max:255',
-			'contact' => 'required|string|max:255',
-			'photo' => 'required|',
-			'about' => 'required|string|max:255',
-			'education' => 'required|string|max:255',
-			'practice' => 'required|string|max:255',
-			'residency' => 'required|string|max:255'
+            'lastname' => 'required|string|max:255',
+            'password' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'contact' => 'required|string|max:255',
+            'photo' => 'required|',
+            'about' => 'required|string|max:255',
+            'education' => 'required|string|max:255',
+            'practice' => 'required|string|max:255',
+            'residency' => 'required|string|max:255'
         ]);
 
         $doctor = Doctor::find($id);
@@ -114,15 +114,15 @@ class DoctorController extends Controller
             abort(404);
         }
         $doctor->firstname = $request->firstname;
-		$doctor->lastname = $request->lastname;
-		$doctor->password = $request->password;
-		$doctor->email = $request->email;
-		$doctor->contact = $request->contact;
-		if ($request->hasFile("photo")) {
+        $doctor->lastname = $request->lastname;
+        $doctor->password = $request->password;
+        $doctor->email = $request->email;
+        $doctor->contact = $request->contact;
+        if ($request->hasFile("photo")) {
             $file = $request->file("photo");
-            $filename = time(). "_" . $file->getClientOriginalName();
+            $filename = time() . "_" . $file->getClientOriginalName();
             if ($doctor->photo) {
-                $oldFilePath = 'uploads/photo/'.basename($doctor->photo);
+                $oldFilePath = 'uploads/photo/' . basename($doctor->photo);
                 if (file_exists($oldFilePath)) {
                     unlink($oldFilePath);
                 }
@@ -130,10 +130,10 @@ class DoctorController extends Controller
             $file->move("uploads/photo", $filename);
             $doctor->photo = asset("uploads/photo/$filename");
         }
-		$doctor->about = $request->about;
-		$doctor->education = $request->education;
-		$doctor->practice = $request->practice;
-		$doctor->residency = $request->residency;
+        $doctor->about = $request->about;
+        $doctor->education = $request->education;
+        $doctor->practice = $request->practice;
+        $doctor->residency = $request->residency;
         $doctor->update();
 
         return redirect()->route('doctor.index')->with(['message' => "Doctor update successfully"]);
@@ -144,11 +144,11 @@ class DoctorController extends Controller
     public function destroy(string $id)
     {
         $doctor = Doctor::find($id);
-        if(!$doctor){
+        if (!$doctor) {
             abort(404);
         }
         if ($doctor->photo) {
-            $oldFilePath = 'uploads/photo/'.basename($doctor->photo);
+            $oldFilePath = 'uploads/photo/' . basename($doctor->photo);
             if (file_exists($oldFilePath)) {
                 unlink($oldFilePath);
             }

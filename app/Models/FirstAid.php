@@ -7,15 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class FirstAid extends Model
 {
-    use HasFactory;
+	use HasFactory;
 
-    protected $fillable = [
-        
-	'id',
-	'case',
-	'photo',
-	'treatment',
-	'created_at',
-	'updated_at',
-    ];
+	protected $fillable = [
+		'case',
+		'photo',
+		'treatment',
+		'created_at',
+		'updated_at',
+	];
 }

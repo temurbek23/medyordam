@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -30,18 +31,18 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'firstname' => 'required|string|max:255',
-			'lastname' => 'required|string|max:255',
-			'password' => 'required|string|max:255',
-			'email' => 'required|string|max:255'
+            'lastname' => 'required|string|max:255',
+            'password' => 'required|string|max:255',
+            'email' => 'required|string|max:255'
         ]);
 
         $admin = new Admin();
         $admin->firstname = $request->firstname;
-		$admin->lastname = $request->lastname;
-		$admin->password = $request->password;
-		$admin->email = $request->email;
+        $admin->lastname = $request->lastname;
+        $admin->password = Hash::make($request->password);
+        $admin->email = $request->email;
         $admin->save();
 
         return redirect()->route('admin.index')->with(['message' => "Admin create successfully"]);
@@ -62,7 +63,7 @@ class AdminController extends Controller
     public function edit(string $id)
     {
         $admin = Admin::find($id);
-        if(!$admin){
+        if (!$admin) {
             abort(404);
         }
         return view('admin.edit-admin', ['model' => $admin]);
@@ -75,9 +76,8 @@ class AdminController extends Controller
     {
         $this->validate($request, [
             'firstname' => 'required|string|max:255',
-			'lastname' => 'required|string|max:255',
-			'password' => 'required|string|max:255',
-			'email' => 'required|string|max:255'
+            'lastname' => 'required|string|max:255',
+            'email' => 'required|string|max:255'
         ]);
 
         $admin = Admin::find($id);
@@ -85,9 +85,8 @@ class AdminController extends Controller
             abort(404);
         }
         $admin->firstname = $request->firstname;
-		$admin->lastname = $request->lastname;
-		$admin->password = $request->password;
-		$admin->email = $request->email;
+        $admin->lastname = $request->lastname;
+        $admin->email = $request->email;
         $admin->update();
 
         return redirect()->route('admin.index')->with(['message' => "Admin update successfully"]);
@@ -98,10 +97,10 @@ class AdminController extends Controller
     public function destroy(string $id)
     {
         $admin = Admin::find($id);
-        if(!$admin){
+        if (!$admin) {
             abort(404);
         }
-        
+
         $admin->delete();
 
         return redirect()->route('admin.index')->with(['message' => 'Admin delete successfully']);

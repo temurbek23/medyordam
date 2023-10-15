@@ -12,6 +12,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call([
+            AdminSeeder::class,
+            DiseaseSeeder::class,
+            DoctorSeeder::class,
+            FirstAidSeeder::class,
+            PatientSeeder::class,
+            ProfessionSeeder::class,
+            SymptomSeeder::class,
+            CallHistorySeeder::class,
+        ]);
+
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

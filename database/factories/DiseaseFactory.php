@@ -12,12 +12,8 @@ class DiseaseFactory extends Factory
     public function definition()
     {
         return [
-			
-			'name' => $this->faker->word,
-			'treatment' => $this->faker->sentence,
-			
-			
-
+			'name' => fake()->text(50),
+			'treatment' => fake()->text(300),
         ];
     }
 }

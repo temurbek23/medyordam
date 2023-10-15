@@ -12,11 +12,7 @@ class ProfessionFactory extends Factory
     public function definition()
     {
         return [
-			
-			'name' => $this->faker->word,
-			
-			
-
+			'name' => fake()->text(20),
         ];
     }
 }

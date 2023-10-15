@@ -12,13 +12,9 @@ class CallHistoryFactory extends Factory
     public function definition()
     {
         return [
-			
-			
-			
-			
-			
-			
-
+            'doctor_id' => rand(1, 20),
+            'patient_id' => rand(1, 20),
+            'duration' => rand(1, 30),
         ];
     }
 }

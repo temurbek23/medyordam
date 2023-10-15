@@ -12,13 +12,9 @@ class FirstAidFactory extends Factory
     public function definition()
     {
         return [
-			
-			'case' => $this->faker->word,
-			'photo' => $this->faker->word,
-			'treatment' => $this->faker->sentence,
-			
-			
-
+			'case' => fake()->text(50),
+			'photo' => fake()->imageUrl(),
+			'treatment' => fake()->text(300),
         ];
     }
 }

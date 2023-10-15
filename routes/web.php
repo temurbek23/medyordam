@@ -2,23 +2,30 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::get('dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
-Route::get('dashboard', function (){
-	return view('dashboard');
-})->name('dashboard');
+
+Route::get('/login', function () {
+    if (\Illuminate\Support\Facades\Auth::check()) {
+        return redirect()->route("dashboard");
+    }
+    return view('login');
+})->name('login');
+
+Route::post('/sign-in', [\App\Http\Controllers\AuthController::class, 'login'])->name('sign');
+
+
+Route::get('logout', function () {
+    \Illuminate\Support\Facades\Auth::logout();
+    return redirect()->route("login");
+})->name("logout");
+
+
 Route::resource('admin', \App\Http\Controllers\AdminController::class);
 Route::resource('patient', \App\Http\Controllers\PatientController::class);
 Route::resource('doctor', \App\Http\Controllers\DoctorController::class);

@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 
 class AdminFactory extends Factory
 {
@@ -12,14 +13,10 @@ class AdminFactory extends Factory
     public function definition()
     {
         return [
-			
-			'firstname' => $this->faker->word,
-			'lastname' => $this->faker->word,
-			'password' => $this->faker->word,
-			'email' => $this->faker->word,
-			
-			
-
+			'firstname' => fake()->firstName(),
+			'lastname' => fake()->lastName(),
+			'password' => Hash::make('12345678'),
+			'email' => fake()->safeEmail(),
         ];
     }
 }

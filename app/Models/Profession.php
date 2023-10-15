@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Profession extends Model
 {
-    use HasFactory;
+	use HasFactory;
 
-    protected $fillable = [
-        
-	'id',
-	'name',
-	'created_at',
-	'updated_at',
-    ];
+	protected $fillable = [
+
+		'id',
+		'name',
+		'created_at',
+		'updated_at',
+	];
 }
